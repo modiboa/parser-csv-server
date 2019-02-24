@@ -16,7 +16,7 @@ public class DecisionService {
     @Autowired
     CsvParser csvParser;
 
-    public List<Decision> prepare(byte[] byteArray) throws IOException {
+    public String prepare(byte[] byteArray) throws IOException {
         DecisionSetup decisionSetup = csvParser.parser(byteArray);
 
         List<Decision> fixedList = new ArrayList<>();
@@ -31,6 +31,6 @@ public class DecisionService {
             }
         });
 
-        return fixedList;
+        return csvParser.createCsvFrom(fixedList);
     }
 }
